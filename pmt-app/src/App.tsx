@@ -64,7 +64,7 @@ function App() {
                 <p className="text-gray-600 mb-4">This content demonstrates that the main area is scrollable while the sidebar remains fixed.</p>
                 
                 <div className="space-y-4">
-                  {Array.from({ length: 10 }, (_, i) => (
+                  {Array.from({ length: 5 }, (_, i) => (
                     <div key={i} className="bg-blue-50 p-4 rounded-lg border border-blue-100">
                       <h3 className="text-sm font-semibold text-blue-700">Content Block {i + 1}</h3>
                       <p className="text-blue-600 text-sm">This is additional content to show scrolling behavior. The sidebar navigation stays fixed while this content area scrolls.</p>
