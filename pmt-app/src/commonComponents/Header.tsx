@@ -16,7 +16,6 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
       <div className="px-6 py-[13px]">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            {/* <h2 className="text-sm font-semibold text-gray-900">Dashboard</h2> */}
             {
               pathName === "/home" ? (
                 <h2 className="text-sm font-semibold text-blue-600">Home</h2>
