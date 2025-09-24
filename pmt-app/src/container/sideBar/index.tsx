@@ -13,7 +13,7 @@ import {
   HiChartBar,
   HiBell
 } from 'react-icons/hi'
-import { Link, NavLink } from 'react-router'
+import {  NavLink } from 'react-router'
 
 interface SubItem {
   id: string

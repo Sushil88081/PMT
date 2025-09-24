@@ -1,8 +1,8 @@
 
 import { useState } from 'react'
 import Sidebar from './container/sideBar'
-import Header from './components/Header'
-import Footer from './components/Footer'
+import Header from './commonComponents/Header'
+import Footer from './commonComponents/Footer'
 import { Outlet } from 'react-router'
 
 function App() {
