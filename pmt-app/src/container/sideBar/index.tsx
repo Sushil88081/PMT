@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { 
-  HiHome, 
-  HiInbox, 
-  HiClipboardList, 
-  HiChevronDown, 
+import {
+  HiHome,
+  HiInbox,
+  HiClipboardList,
+  HiChevronDown,
   HiChevronRight,
   HiMenu,
   HiX,
@@ -13,6 +13,7 @@ import {
   HiChartBar,
   HiBell
 } from 'react-icons/hi'
+import { Link, NavLink } from 'react-router'
 
 interface SubItem {
   id: string
@@ -34,7 +35,7 @@ const navigationItems: NavItem[] = [
     id: 'home',
     label: 'Home',
     icon: <HiHome className="w-5 h-5" />,
-    href: '/home'
+    href: '/home',
   },
   {
     id: 'inbox',
@@ -103,8 +104,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed = false, onToggle }) => {
   const [expandedItems, setExpandedItems] = useState<string[]>([])
 
   const toggleExpanded = (itemId: string) => {
-    setExpandedItems(prev => 
-      prev.includes(itemId) 
+    setExpandedItems(prev =>
+      prev.includes(itemId)
         ? prev.filter(id => id !== itemId)
         : [...prev, itemId]
     )
@@ -117,9 +118,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed = false, onToggle }) => {
   }
 
   return (
-    <div className={`bg-white border-r border-blue-100 transition-all duration-300 ${
-      isCollapsed ? 'w-16' : 'w-64'
-    } h-screen flex flex-col`}>
+    <div className={`bg-white border-r border-blue-100 transition-all duration-300 ${isCollapsed ? 'w-16' : 'w-64'
+      } h-screen flex flex-col`}>
       {/* Header */}
       <div className="p-4 border-b border-blue-100 ">
         <div className="flex items-center justify-between">
@@ -142,23 +142,25 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed = false, onToggle }) => {
             {/* Main Item */}
             <div
               onClick={() => handleItemClick(item)}
-              className={`flex items-center justify-between p-3 rounded-lg cursor-pointer transition-all duration-200 group ${
-                isCollapsed 
-                  ? 'justify-center hover:bg-blue-50' 
-                  : 'hover:bg-blue-50 hover:text-blue-600'
-              }`}
+              className={`flex items-center justify-between p-3 rounded-lg cursor-pointer transition-all duration-200 group ${isCollapsed
+                ? 'justify-center hover:bg-blue-50'
+                : 'hover:bg-blue-50 hover:text-blue-600'
+                }`}
             >
-              <div className="flex items-center space-x-3">
-                <span className="text-blue-600 group-hover:text-blue-700">
-                  {item.icon}
-                </span>
-                {!isCollapsed && (
-                  <span className="text-sm text-gray-700 group-hover:text-blue-600 font-medium">
-                    {item.label}
-                  </span>
-                )}
-              </div>
-              
+              <NavLink
+                key={item.href}
+                to={item.href||"/"}
+                end={item.href === "/"}
+                className={({ isActive }) =>
+                  `w-full py-2 px-3 rounded-md flex items-center space-x-3 ${isActive ? "bg-blue-200 border-l-4 border-blue-500  cursor-default" : ""
+                  }`
+                }
+              >
+                <span className='text-blue-600 group-hover:text-blue-700'>{item.icon}</span>
+                {!isCollapsed && <span className='text-sm text-gray-700 group-hover:text-blue-600 font-medium'>{item.label}</span>}
+              </NavLink>
+
+
               {!isCollapsed && item.subItems && item.subItems.length > 0 && (
                 <span className="text-blue-600">
                   {expandedItems.includes(item.id) ? (
