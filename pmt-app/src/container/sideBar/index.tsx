@@ -11,7 +11,8 @@ import {
   HiCog,
   HiDocumentText,
   HiChartBar,
-  HiBell
+  HiBell,
+  HiChat
 } from 'react-icons/hi'
 import {  NavLink } from 'react-router'
 
@@ -88,11 +89,18 @@ const navigationItems: NavItem[] = [
     href: '/profile'
   },
   {
+    id: 'chat',
+    label: 'Chat',
+    icon: <HiChat className="w-5 h-5" />,
+    href: '/chat'
+  },
+  {
     id: 'settings',
     label: 'Settings',
     icon: <HiCog className="w-5 h-5" />,
     href: '/settings'
-  }
+  },
+   
 ]
 
 interface SidebarProps {
