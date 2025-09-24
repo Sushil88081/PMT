@@ -2,15 +2,27 @@
 import { useState } from 'react'
 import { Button } from '../../commonComponents/button'
 import { PopoverDialog } from '../../commonComponents/popoverDialog'
+import { Input } from '../../commonComponents/input'
+import { SideDrawer } from '../../commonComponents/sideDrawer'
+
 
 const Project = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const [openDrawer,setopenDrawer]=useState(false)
   function handleClick() {
-    setIsOpen(true)
+    // setIsOpen(true)
+    setopenDrawer(true)
   }
   function handleClose(){
     setIsOpen(false)
+    
   }
+  
+
+
+  const [fullName,setFullName]=useState("")
+  console.log("fullname",fullName)
+    
   return (
     <div>
       <Button
@@ -43,7 +55,11 @@ const Project = () => {
         title='Create Project'
 
       />
-
+  
+ <SideDrawer isOpen={openDrawer} onClose={() => setopenDrawer(false)} position="right">
+   
+          <Input className='' label='Full name ' onChange={(e)=>setFullName(e.target.value)} value={fullName}/>
+      </SideDrawer>
     </div>
   )
 }
