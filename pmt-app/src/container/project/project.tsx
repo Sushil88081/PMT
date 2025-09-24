@@ -4,25 +4,27 @@ import { Button } from '../../commonComponents/button'
 import { PopoverDialog } from '../../commonComponents/popoverDialog'
 import { Input } from '../../commonComponents/input'
 import { SideDrawer } from '../../commonComponents/sideDrawer'
+import { Card } from '../../commonComponents/card'
+import { DisplayCard } from './components/displayCards'
 
 
 const Project = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const [openDrawer,setopenDrawer]=useState(false)
+  const [openDrawer, setopenDrawer] = useState(false)
   function handleClick() {
     // setIsOpen(true)
     setopenDrawer(true)
   }
-  function handleClose(){
+  function handleClose() {
     setIsOpen(false)
-    
+
   }
-  
 
 
-  const [fullName,setFullName]=useState("")
-  console.log("fullname",fullName)
-    
+
+  const [fullName, setFullName] = useState("")
+  console.log("fullname", fullName)
+
   return (
     <div>
       <Button
@@ -30,36 +32,20 @@ const Project = () => {
         onClick={() => { handleClick() }}
         className=''
       />
-      <PopoverDialog
-        children={
-          <div>
-            {/* <input
-              type="text"
-              placeholder="Enter text"
-              className="border border-blue-500 rounded-md px-3 py-2 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-500 "
-            />
-            <Button
-              children={`Submit`}
-              onClick={() => { }}
-              className=''
-            /> */}
-            <Button
-              className=''
-              children="close"
-              onClick={() => { handleClose()}}
-            />
-          </div>
-        }
-        close={() => { }}
-        isOpen={isOpen}
-        title='Create Project'
-
-      />
-  
- <SideDrawer isOpen={openDrawer} onClose={() => setopenDrawer(false)} position="right">
-   
-          <Input className='' label='Full name ' onChange={(e)=>setFullName(e.target.value)} value={fullName}/>
+      <SideDrawer isOpen={openDrawer} onClose={() => setopenDrawer(false)} position="right">
+        <Input className='' label='Enter project name ' onChange={(e) => setFullName(e.target.value)} value={fullName} />
+        <br />
+        <textarea
+          className="w-full border border-blue-600 rounded-md px-3 py-2 text-gray-700 shadow-sm focus:outline-none  "
+          onChange={(e) => setFullName(e.target.value)}
+          value={fullName}
+          rows={4}
+        />
+        <br />
+        <br />
+        <Button children={`Create Project`} className='' onClick={() => { }} />
       </SideDrawer>
+      <DisplayCard />
     </div>
   )
 }
