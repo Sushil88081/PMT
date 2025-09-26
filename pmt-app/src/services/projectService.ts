@@ -11,4 +11,7 @@ export interface Project {
      getProjects(){
        return this.getAll()
      }
+     getProjectsById(id:string){
+       return this.getById(id)
+     }
  }
