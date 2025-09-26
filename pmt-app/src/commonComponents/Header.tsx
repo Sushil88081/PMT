@@ -26,7 +26,7 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
               ) : pathName=="/inbox"?(
                 <h2 className="text-sm font-semibold text-blue-600">Inbox</h2>
               ):pathName=="/analytics"?(
-                  <h2 className="text-sm font-semibold textblue-600 ">Analytics</h2>
+                  <h2 className="text-sm font-semibold text-blue-600 ">Analytics</h2>
               ):pathName=="/notifications"?(
                   <h2 className="text-sm font-semibold text-blue-600">Notifications</h2>
               ):pathName=="/profile"?(

@@ -5,7 +5,9 @@ import Header from './commonComponents/Header'
 import Footer from './commonComponents/Footer'
 import { Outlet } from 'react-router'
 
+
 function App() {
+
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
 
   const toggleSidebar = () => {
