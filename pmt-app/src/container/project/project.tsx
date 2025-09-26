@@ -1,16 +1,20 @@
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from '../../commonComponents/button'
-import { PopoverDialog } from '../../commonComponents/popoverDialog'
+
 import { Input } from '../../commonComponents/input'
 import { SideDrawer } from '../../commonComponents/sideDrawer'
-import { Card } from '../../commonComponents/card'
 import { DisplayCard } from './components/displayCards'
+import { projectService, type Project } from '../../services/projectService'
+
 
 
 const Project = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [openDrawer, setopenDrawer] = useState(false)
+    const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   function handleClick() {
     // setIsOpen(true)
     setopenDrawer(true)
@@ -19,8 +23,20 @@ const Project = () => {
     setIsOpen(false)
 
   }
-
-
+  console.log("project loaadnjkbdsfs",projects)
+  useEffect(() => {
+    // Method 1: .then() use karke
+    projectService.getProjects()
+      .then((data) => {
+        setProjects(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError('Projects load nahi ho paye');
+        setLoading(false);
+        console.error('Error:', err);
+      });
+  }, []);
 
   const [fullName, setFullName] = useState("")
   console.log("fullname", fullName)

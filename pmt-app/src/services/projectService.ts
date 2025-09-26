@@ -1,5 +1,4 @@
 
-import apiClient from "../customhooks/errorHandlingHook";
 import { BaseService } from "./baseService";
 
 export interface Project {
@@ -7,11 +6,22 @@ export interface Project {
   name: string;         // project name
   description?: string; // optional description
 }
- class ProjectService extends BaseService<Project>{
+  class ProjectService extends BaseService<Project>{
+ constructor() {
+    super("posts"); 
+  }
+    saveProject(payload:any){
+        return this.save(payload)
+    }
      getProjects(){
        return this.getAll()
      }
-     getProjectsById(id:string){
+     getProjectById(id:string){
        return this.getById(id)
      }
+     deleteProject(id:string){
+        return this.delete(id)
+     }
+  
  }
+ export const projectService = new ProjectService();
