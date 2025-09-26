@@ -1,13 +1,14 @@
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Sidebar from './container/sideBar'
 import Header from './commonComponents/Header'
 import Footer from './commonComponents/Footer'
 import { Outlet } from 'react-router'
+import { ErrorHandler } from './customhooks/errorHandlingHook'
 
 
 function App() {
-
+  ErrorHandler()
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
 
   const toggleSidebar = () => {

@@ -8,7 +8,7 @@ export interface Project {
 }
   class ProjectService extends BaseService<Project>{
  constructor() {
-    super("posts"); 
+    super("posts/asa"); 
   }
     saveProject(payload:any){
         return this.save(payload)
