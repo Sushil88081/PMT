@@ -4,29 +4,37 @@ import { Button } from '../../commonComponents/button'
 import { Input } from '../../commonComponents/input'
 import { SideDrawer } from '../../commonComponents/sideDrawer'
 import { DisplayCard } from './components/displayCards'
-import { projectService, type Project } from '../../services/projectService'
+import { projectService } from '../../services/projectService'
+import type { Project } from './projectSlice'
 import apiClient from '../../customhooks/errorHandlingHook'
 
 
 
 const Project = () => {
+  const [projectValue, setProjectValue] = useState<Project>({
+    id: '',
+    name: '',
+    description: '',
+
+  })
   const [isOpen, setIsOpen] = useState(false)
   const [openDrawer, setopenDrawer] = useState(false)
     const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   function handleClick() {
-    // setIsOpen(true)
     setopenDrawer(true)
   }
-  function handleClose() {
-    setIsOpen(false)
-
+  function handleCreateProject() {
+    console.log("projectValue", projectValue)
+    setProjectValue({
+      id: '',
+      name: '',
+      description: '',
+    })
   }
-  console.log("project loaadnjkbdsfs",projects)
   useEffect(() => {
-    // Method 1: .then() use karke
-    projectService.getProjects()
+    projectService.getAll()
       .then((data) => {
         setProjects(data);
         setLoading(false);
@@ -37,9 +45,7 @@ const Project = () => {
         console.error('Error:', err);
       });
   }, []);
-
-  const [fullName, setFullName] = useState("")
-  console.log("fullname", fullName)
+  console.log("projectValue", projectValue)
 
   return (
     <div>
@@ -49,17 +55,19 @@ const Project = () => {
         className=''
       />
       <SideDrawer isOpen={openDrawer} onClose={() => setopenDrawer(false)} position="right">
-        <Input className='' label='Enter project name ' onChange={(e) => setFullName(e.target.value)} value={fullName} />
+        <Input className='' label='Enter project name ' onChange={(e) => setProjectValue({ ...projectValue, name: e.target.value })} value={projectValue.name} />
         <br />
         <textarea
           className="w-full border border-blue-600 rounded-md px-3 py-2 text-gray-700 shadow-sm focus:outline-none  "
-          onChange={(e) => setFullName(e.target.value)}
-          value={fullName}
+          onChange={(e) => setProjectValue({ ...projectValue, description: e.target.value })}
+          value={projectValue.description}
           rows={4}
         />
         <br />
         <br />
-        <Button children={`Create Project`} className='' onClick={() => { }} />
+        <Button children={`Create Project`} className='' onClick={() => { 
+          handleCreateProject()
+        }} />
       </SideDrawer>
       <DisplayCard />
     </div>

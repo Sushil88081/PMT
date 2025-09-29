@@ -8,7 +8,7 @@ export interface CrudEntity<T> {
   delete(id: string): Promise<void>;
 }
 export class BaseService<T> implements CrudEntity<T> {
-  private endpoint=apiClient.defaults.baseURL // declare explicitly
+  private endpoint = apiClient.defaults.baseURL // declare explicitly
 
   constructor(endpoint: string) {
     this.endpoint = endpoint; // assign in constructor
@@ -35,6 +35,7 @@ export class BaseService<T> implements CrudEntity<T> {
   }
 
   async delete(id: string): Promise<void> {
-    await apiClient.delete(`${this.endpoint}/${id}`);
+     const result = await apiClient.delete(`${this.endpoint}/${id}`);
+     return result.data.message;
   }
 }
